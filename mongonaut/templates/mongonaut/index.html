@@ -1,5 +1,5 @@
 {% extends "mongonaut/base.html" %}
-{% load url from future %}
+
 {% load mongonaut_tags %}
 
 {% block breadcrumbs %}
@@ -20,24 +20,24 @@
                 <th colspan=3>{{ app.app_name.title }}</th>
             </tr>
         </thead>
-        
+
         <tbody>
         {% for model in app.obj.models %}
             <tr>
                 <td><a href="{% url "document_list" app.app_name model.name %}">{{ model.name }}</a></td>
                 {% if request.user.is_admin or request.user.is_staff %}
                     <td><a href="{% url "document_detail_add_form" app.app_name model.name %}">Add</a></td>
-                    <td><a href="{% url "document_list" app.app_name model.name %}">Change</a></td>                        
+                    <td><a href="{% url "document_list" app.app_name model.name %}">Change</a></td>
                 {% else %}
                     <td>Add</td>
                     <td>Change</td>
-                {% endif %}    
+                {% endif %}
             </tr>
         {% endfor %}
-        </tbody>        
-    </table>    
+        </tbody>
+    </table>
 {% endfor %}
     </div>
-</div>    
+</div>
 
 {% endblock %}
